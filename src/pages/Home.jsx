@@ -15,8 +15,7 @@ import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 
 const Home = () => {
-  const resumeUrl =
-    "https://customer-assets.emergentagent.com/job_0b03f8ae-141c-4c36-84a9-f9977aff6d4e/artifacts/c6yyv0b3_Resume_Arpit.pdf";
+  const resumeUrl = "/resume/Arpit_Agarwal_Resume.pdf";
 
   const highlights = [
     {
