@@ -15,7 +15,7 @@ import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 
 const Home = () => {
-  const resumeUrl = "/resume/Arpit_Agarwal_Resume.pdf";
+  const resumeUrl = `${process.env.PUBLIC_URL}/resume/Resume_Arpit.pdf`;
 
   const highlights = [
     {
@@ -75,12 +75,7 @@ const Home = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-16">
-              <a
-                href={resumeUrl}
-                download="Resume_Arpit.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
                 <Button
                   size="lg"
                   className="bg-teal-600 hover:bg-teal-700 text-white"
