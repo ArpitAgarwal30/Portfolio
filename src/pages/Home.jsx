@@ -199,8 +199,8 @@ const Home = () => {
                 <li className="flex gap-3 text-gray-600">
                   <ArrowRight className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
                   <span>
-                    Designed and owned scalable backend microservices using Java
-                    and .NET Core, serving high-traffic production environments
+                    Designed and owned scalable backend microservices using .NET
+                    Core, serving high-traffic production environments
                   </span>
                 </li>
                 <li className="flex gap-3 text-gray-600">
@@ -235,6 +235,13 @@ const Home = () => {
                 <li className="flex gap-3 text-gray-600">
                   <ArrowRight className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
                   <span>
+                    Participated in Agile ceremonies including sprint planning,
+                    daily standups, and peer code reviews
+                  </span>
+                </li>
+                <li className="flex gap-3 text-gray-600">
+                  <ArrowRight className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                  <span>
                     {" "}
                     Built and maintained frontend features using React, ensuring
                     responsive UI and seamless integration with backend APIs
@@ -243,12 +250,6 @@ const Home = () => {
               </ul>
 
               <div className="flex flex-wrap gap-2">
-                <Badge
-                  variant="secondary"
-                  className="bg-gray-100 text-gray-700"
-                >
-                  Java
-                </Badge>
                 <Badge
                   variant="secondary"
                   className="bg-gray-100 text-gray-700"
@@ -279,6 +280,12 @@ const Home = () => {
                 >
                   Performance Optimization
                 </Badge>
+                <Badge
+                  variant="secondary"
+                  className="bg-gray-100 text-gray-700"
+                >
+                  Agile
+                </Badge>
               </div>
             </Card>
 
@@ -302,7 +309,7 @@ const Home = () => {
                 <li className="flex gap-3 text-gray-600">
                   <ArrowRight className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
                   <span>
-                    Developed and maintained backend services using Java and C#
+                    Developed and maintained backend services using .Net and C#
                     for high-scale consumer platforms
                   </span>
                 </li>
@@ -318,13 +325,6 @@ const Home = () => {
                   <span>
                     Improved application performance through strategic code
                     refactoring and database query optimization
-                  </span>
-                </li>
-                <li className="flex gap-3 text-gray-600">
-                  <ArrowRight className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
-                  <span>
-                    Participated in Agile ceremonies including sprint planning,
-                    daily standups, and peer code reviews
                   </span>
                 </li>
                 <li className="flex gap-3 text-gray-600">
@@ -348,12 +348,6 @@ const Home = () => {
                   variant="secondary"
                   className="bg-gray-100 text-gray-700"
                 >
-                  Java
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-gray-100 text-gray-700"
-                >
                   C#
                 </Badge>
                 <Badge
@@ -372,13 +366,13 @@ const Home = () => {
                   variant="secondary"
                   className="bg-gray-100 text-gray-700"
                 >
-                  Agile
+                  Code Reviews
                 </Badge>
                 <Badge
                   variant="secondary"
                   className="bg-gray-100 text-gray-700"
                 >
-                  Code Reviews
+                  Customer Interaction
                 </Badge>
               </div>
             </Card>
@@ -464,9 +458,6 @@ const Home = () => {
               </h3>
               <div className="flex flex-wrap gap-2">
                 <Badge className="bg-teal-50 text-teal-700 hover:bg-teal-100">
-                  Java
-                </Badge>
-                <Badge className="bg-teal-50 text-teal-700 hover:bg-teal-100">
                   C#
                 </Badge>
                 <Badge className="bg-teal-50 text-teal-700 hover:bg-teal-100">
@@ -545,9 +536,6 @@ const Home = () => {
                 Cloud & DevOps
               </h3>
               <div className="flex flex-wrap gap-2">
-                <Badge className="bg-teal-50 text-teal-700 hover:bg-teal-100">
-                  AWS
-                </Badge>
                 <Badge className="bg-teal-50 text-teal-700 hover:bg-teal-100">
                   Azure
                 </Badge>
