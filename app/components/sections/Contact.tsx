@@ -7,7 +7,7 @@ import { profile } from "~/content/profile";
 
 export function Contact() {
   return (
-    <Section id="contact" index="05" title="Let's talk" description={profile.closing}>
+    <Section id="contact" index="06" title="Let's talk" description={profile.closing}>
       <p className="font-mono text-lg break-all sm:text-xl">{profile.email}</p>
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <a href={`mailto:${profile.email}`} className={primaryButton}>

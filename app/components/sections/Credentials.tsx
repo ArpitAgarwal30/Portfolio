@@ -6,7 +6,7 @@ import { formatYearMonth } from "~/lib/dates";
 
 export function Credentials() {
   return (
-    <Section id="credentials" index="04" title="Certifications and learning">
+    <Section id="credentials" index="05" title="Certifications and learning">
       <ul className="grid gap-6 md:grid-cols-3">
         {certifications.map((cert) => (
           <li key={cert.name} className="flex flex-col rounded-xl border border-border bg-surface p-6">

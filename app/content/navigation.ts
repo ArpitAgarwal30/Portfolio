@@ -6,6 +6,7 @@ export interface NavItem {
 // Order matches the sections on the home page; ids are the section anchors.
 export const sections: NavItem[] = [
   { id: "about", label: "About" },
+  { id: "work", label: "Work" },
   { id: "experience", label: "Experience" },
   { id: "expertise", label: "Expertise" },
   { id: "credentials", label: "Credentials" },

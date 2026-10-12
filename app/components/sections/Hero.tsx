@@ -19,6 +19,9 @@ export function Hero() {
             <FileText className="size-4" aria-hidden="true" />
             View resume
           </a>
+          <Link to="/#work" className={secondaryButton}>
+            Explore work
+          </Link>
           <Link to="/#contact" className={secondaryButton}>
             Get in touch
           </Link>

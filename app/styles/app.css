@@ -74,12 +74,8 @@
     outline-offset: 3px;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
-
+  /* No global smooth scrolling: React Router resets scroll on page changes, and a
+     smooth reset turns opening a new page into a long animated glide to the top. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

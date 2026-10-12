@@ -6,7 +6,7 @@ export function Expertise() {
   return (
     <Section
       id="expertise"
-      index="03"
+      index="04"
       title="Technical expertise"
       description="Grouped by the kind of problem, each with where I've actually used it."
     >

@@ -5,7 +5,7 @@ import { formatYearMonth } from "~/lib/dates";
 
 export function Experience() {
   return (
-    <Section id="experience" index="02" title="Experience">
+    <Section id="experience" index="03" title="Experience">
       <ol className="relative space-y-12 border-l border-border pl-6 sm:pl-8">
         {roles.map((role) => {
           const current = role.end === null;

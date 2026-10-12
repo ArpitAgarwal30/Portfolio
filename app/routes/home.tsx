@@ -5,6 +5,7 @@ import { Credentials } from "~/components/sections/Credentials";
 import { Experience } from "~/components/sections/Experience";
 import { Expertise } from "~/components/sections/Expertise";
 import { Hero } from "~/components/sections/Hero";
+import { SelectedWork } from "~/components/sections/SelectedWork";
 import { profile } from "~/content/profile";
 
 export const meta: Route.MetaFunction = () => [
@@ -17,6 +18,7 @@ export default function Home() {
     <>
       <Hero />
       <About />
+      <SelectedWork />
       <Experience />
       <Expertise />
       <Credentials />
