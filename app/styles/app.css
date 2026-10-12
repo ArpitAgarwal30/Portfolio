@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Design tokens. Light is the base; dark applies from the stored/OS choice,
+   or from the OS setting alone when JavaScript is unavailable. */
+:root {
+  color-scheme: light;
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-2: #f2f2ee;
+  --border: #e4e4de;
+  --text: #14171c;
+  --muted: #5b6270;
+  --accent: #0f766e;
+  --accent-contrast: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0f14;
+  --surface: #11161d;
+  --surface-2: #171d26;
+  --border: #232b36;
+  --text: #e8ecf1;
+  --muted: #9aa4b2;
+  --accent: #2dd4bf;
+  --accent-contrast: #04201d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #0b0f14;
+    --surface: #11161d;
+    --surface-2: #171d26;
+    --border: #232b36;
+    --text: #e8ecf1;
+    --muted: #9aa4b2;
+    --accent: #2dd4bf;
+    --accent-contrast: #04201d;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
