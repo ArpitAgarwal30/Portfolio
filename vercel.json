@@ -4,6 +4,13 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "build/client",
+  "redirects": [
+    {
+      "source": "/resume/Resume_Arpit.pdf",
+      "destination": "/resume/Arpit_Agarwal_Resume.pdf",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

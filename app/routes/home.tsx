@@ -1,5 +1,10 @@
 import type { Route } from "./+types/home";
-import { Container } from "~/components/layout/Container";
+import { About } from "~/components/sections/About";
+import { Contact } from "~/components/sections/Contact";
+import { Credentials } from "~/components/sections/Credentials";
+import { Experience } from "~/components/sections/Experience";
+import { Expertise } from "~/components/sections/Expertise";
+import { Hero } from "~/components/sections/Hero";
 import { profile } from "~/content/profile";
 
 export const meta: Route.MetaFunction = () => [
@@ -9,10 +14,13 @@ export const meta: Route.MetaFunction = () => [
 
 export default function Home() {
   return (
-    <Container className="py-24 sm:py-32">
-      <p className="font-mono text-sm text-accent">{profile.positioning}</p>
-      <h1 className="mt-4 text-4xl font-semibold tracking-tight text-balance sm:text-6xl">{profile.name}</h1>
-      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted">{profile.intro}</p>
-    </Container>
+    <>
+      <Hero />
+      <About />
+      <Experience />
+      <Expertise />
+      <Credentials />
+      <Contact />
+    </>
   );
 }
