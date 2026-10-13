@@ -1,5 +1,5 @@
 import { FileText } from "lucide-react";
-import { Link } from "react-router";
+import { SectionLink } from "~/components/ui/SectionLink";
 import { Container } from "~/components/layout/Container";
 import { GitHubIcon, LinkedInIcon } from "~/components/ui/BrandIcons";
 import { externalLinkProps, primaryButton, secondaryButton } from "~/components/ui/styles";
@@ -19,12 +19,12 @@ export function Hero() {
             <FileText className="size-4" aria-hidden="true" />
             View resume
           </a>
-          <Link to="/#work" className={secondaryButton}>
+          <SectionLink section="work" className={secondaryButton}>
             Explore work
-          </Link>
-          <Link to="/#contact" className={secondaryButton}>
+          </SectionLink>
+          <SectionLink section="contact" className={secondaryButton}>
             Get in touch
-          </Link>
+          </SectionLink>
         </div>
 
         <ul className="mt-8 flex gap-5 text-sm text-muted" aria-label="Profiles">

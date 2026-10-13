@@ -6,11 +6,17 @@ import { SiteFooter } from "~/components/layout/SiteFooter";
 import { SiteHeader } from "~/components/layout/SiteHeader";
 import { SkipLink } from "~/components/layout/SkipLink";
 import { themeInitScript } from "~/lib/theme";
+import geistLatin from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
 import "@fontsource-variable/geist";
 import "@fontsource-variable/geist-mono";
 import "./styles/app.css";
 
-export const links: Route.LinksFunction = () => [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }];
+export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+  // Fetch the main text font straight away instead of after the stylesheet is parsed, so the hero
+  // text swaps to Geist sooner. Vite resolves this to the same hashed file the @font-face rule uses.
+  { rel: "preload", href: geistLatin, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+];
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

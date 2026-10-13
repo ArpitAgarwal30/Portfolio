@@ -28,7 +28,7 @@ export interface CaseStudy {
   title: string;
   summary: string;
   kind: "Independent project";
-  status: "In progress" | "Live";
+  status: "In progress" | "Live" | "Complete";
   period: string;
   role: string;
   stack: string[];
@@ -38,6 +38,93 @@ export interface CaseStudy {
 }
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: "crm-sync-demo",
+    title: "A CRM sync that can't quietly break your data",
+    summary:
+      "An end-to-end demo of syncing contacts between two mismatched CRMs safely: preview every change, catch edits made in the target as conflicts, never delete, keep an audit trail, and undo any run.",
+    kind: "Independent project",
+    status: "Complete",
+    period: "October 2026",
+    role: "Owner. I set the requirements, reviewed every step and approved each design decision. Mock data only, no employer code.",
+    stack: ["C#", ".NET 10", "ASP.NET Core", "EF Core", "SQLite", "xUnit", "React", "TypeScript"],
+    links: [{ label: "Source on GitHub", href: "https://github.com/ArpitAgarwal30/crm-sync-demo" }],
+    architecture: [
+      { label: "Two mock CRMs", detail: "Alpha (source) and Beta (target) store the same contacts in different shapes" },
+      { label: "Sync engine", detail: "Pure C#: map, match, dry-run plan, apply, roll back, audit" },
+      { label: "ASP.NET Core API", detail: "EF Core and SQLite; each apply or rollback is one transaction" },
+      { label: "React UI", detail: "Review the dry run, apply, simulate edits, roll back, read the audit log" },
+    ],
+    stages: [
+      {
+        id: "problem",
+        title: "Problem",
+        paragraphs: [
+          "Two systems hold the same customers in different shapes: one splits first and last names and says lead or customer, the other keeps one full name and says Prospect or Client. People also edit the target directly.",
+          "A naive sync that copies everything across overwrites their edits, creates duplicates when re-run, and offers no way back. This is the kind of integration problem I work on as a Technical Account Manager, rebuilt here from scratch with fictional data.",
+        ],
+      },
+      {
+        id: "requirements",
+        title: "Requirements",
+        paragraphs: [
+          "Show every change before writing anything. Never silently overwrite an edit made in the target, and never delete. Reject records that can't be mapped safely instead of guessing. Record every write, and make any run reversible without undoing someone else's later work.",
+        ],
+      },
+      {
+        id: "investigation",
+        title: "Investigation",
+        paragraphs: [
+          "Two details shaped the design. Comparing records through a shared model is lossy: \"Mary Ann Castillo\" can't be split back into first and last name reliably, so it would look changed on every run. And a target's last-modified time alone can't tell whether the sync or a person made the latest edit.",
+        ],
+      },
+      {
+        id: "architecture",
+        title: "Architecture",
+        paragraphs: [
+          "A pure C# engine with no file, network or console access, wrapped by a command-line tool and an ASP.NET Core API. Changes are compared in the target's own field format, which removes the name churn.",
+          "Conflicts use three-way detection: the engine remembers each record's timestamp as it last wrote it, so a moved timestamp means someone else edited the record. Each planned change also records the version it expects, so anything that changes between the dry run and applying is skipped as stale.",
+        ],
+      },
+      {
+        id: "implementation",
+        title: "Implementation",
+        paragraphs: [
+          "Immutable C# records for every model, adapters for each CRM's format, and an injected clock so every timestamp is controllable in tests. Plans are stored, so the UI applies exactly the plan the visitor reviewed, and only once.",
+        ],
+      },
+      {
+        id: "integration",
+        title: "Integration",
+        paragraphs: [
+          "The API keeps both mock CRMs, the sync's memory, runs and the audit log in one SQLite database, so each apply or rollback is a single all-or-nothing transaction.",
+          "One subtle bug was avoided before it shipped: EF Core's default way of storing dates in SQLite loses precision, which would have made every exact timestamp check fail and every rollback refuse to run. Timestamps are stored as exact UTC ticks instead. The React UI talks to the API through standard problem-details errors, shown next to the right form fields.",
+        ],
+      },
+      {
+        id: "testing",
+        title: "Testing",
+        paragraphs: [
+          "62 automated tests: 40 unit tests for the engine, 10 integration tests that drive the real API over HTTP against a throwaway database, and 12 UI tests. To check the tests themselves, I broke the code on purpose: inverting the conflict check failed 4 tests, and removing the transaction commit failed 3.",
+          "The full flow was also run in a real browser: dry run, apply, edit a contact in the target, dry run again to see the conflict, then roll back. That run caught a layout bug where hidden screen-reader labels widened the page.",
+        ],
+      },
+      {
+        id: "deployment",
+        title: "Deployment",
+        paragraphs: [
+          "The code is public on GitHub under the MIT license and runs locally with two commands. There is deliberately no hosted copy: a public one would first need authentication or a read-only mode so visitors couldn't change each other's data.",
+        ],
+      },
+      {
+        id: "outcome",
+        title: "Outcome",
+        paragraphs: [
+          "A working end-to-end demo. One dry run over the demo data exercises every case: a create, an update, an email match that gets linked, unchanged records, a conflict, invalid records and a contact the sync must leave alone. Rollback restores what it safely can and reports what it left untouched.",
+        ],
+      },
+    ],
+  },
   {
     slug: "portfolio-rebuild",
     title: "Rebuilding this portfolio",
@@ -123,7 +210,7 @@ export const caseStudies: CaseStudy[] = [
         id: "outcome",
         title: "Outcome so far",
         paragraphs: [
-          "The site pre-renders to static HTML with all content present, loads about 120 KB of JavaScript on the home page (gzipped, mostly React and React Router), and has no known accessibility lint violations. This section will be updated with production results after launch.",
+          "The site pre-renders to static HTML with all content present, loads about 125 KB of JavaScript on the home page (gzipped, mostly React and React Router), and has no known accessibility lint violations. This section will be updated with production results after launch.",
         ],
       },
     ],

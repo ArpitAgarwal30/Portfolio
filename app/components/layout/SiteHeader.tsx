@@ -1,15 +1,22 @@
 import { FileText, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
+import { SectionLink } from "~/components/ui/SectionLink";
 import { ThemeToggle } from "~/components/ui/ThemeToggle";
 import { externalLinkProps, iconButton } from "~/components/ui/styles";
 import { sections } from "~/content/navigation";
 import { profile } from "~/content/profile";
+import { useActiveSection } from "~/lib/useActiveSection";
 import { Container } from "./Container";
+
+const sectionIds = sections.map((item) => item.id);
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const { pathname } = useLocation();
+  // Highlight the section being read, but only on the home page where the sections live.
+  const activeSection = useActiveSection(pathname === "/" ? sectionIds : []);
 
   // Escape closes the mobile menu and returns focus to the button that opened it.
   useEffect(() => {
@@ -35,9 +42,13 @@ export function SiteHeader() {
           <ul className="flex items-center gap-6 text-sm text-muted">
             {sections.map((item) => (
               <li key={item.id}>
-                <Link to={`/#${item.id}`} className="transition-colors hover:text-text">
+                <SectionLink
+                  section={item.id}
+                  aria-current={activeSection === item.id ? "location" : undefined}
+                  className="relative py-1 transition-colors hover:text-text aria-[current=location]:text-text aria-[current=location]:after:absolute aria-[current=location]:after:inset-x-0 aria-[current=location]:after:-bottom-px aria-[current=location]:after:h-px aria-[current=location]:after:bg-accent"
+                >
                   {item.label}
-                </Link>
+                </SectionLink>
               </li>
             ))}
           </ul>
@@ -72,13 +83,14 @@ export function SiteHeader() {
           <ul className="flex flex-col">
             {sections.map((item) => (
               <li key={item.id}>
-                <Link
-                  to={`/#${item.id}`}
+                <SectionLink
+                  section={item.id}
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-2 py-3 text-text hover:bg-surface-2"
+                  aria-current={activeSection === item.id ? "location" : undefined}
+                  className="block rounded-md px-2 py-3 text-text hover:bg-surface-2 aria-[current=location]:text-accent"
                 >
                   {item.label}
-                </Link>
+                </SectionLink>
               </li>
             ))}
             <li>

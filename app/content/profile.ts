@@ -6,6 +6,8 @@ export interface Profile {
   positioning: string;
   intro: string;
   location: string;
+  /** Canonical production address, used for absolute URLs in link previews and the sitemap. */
+  siteUrl: string;
   email: string;
   resumeUrl: string;
   closing: string;
@@ -21,6 +23,7 @@ export const profile: Profile = {
   intro:
     "I bridge the gap between technology, customer problems, and business outcomes, combining hands-on engineering experience with technical account management and practical AI-powered solutions.",
   location: "India",
+  siteUrl: "https://arpitagarwal.vercel.app",
   email: "arpit.agarwal67@gmail.com",
   resumeUrl: "/resume/Arpit_Agarwal_Resume.pdf",
   closing:

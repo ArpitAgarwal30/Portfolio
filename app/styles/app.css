@@ -75,7 +75,27 @@
   }
 
   /* No global smooth scrolling: React Router resets scroll on page changes, and a
-     smooth reset turns opening a new page into a long animated glide to the top. */
+     smooth reset turns opening a new page into a long animated glide to the top.
+     SectionLink turns it on just for in-page section jumps. */
+  /* Sections rise in gently as they scroll into view. Pure CSS: where scroll-driven animations
+     aren't supported, or motion is reduced, content simply appears, so it can never stay hidden. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 35%;
+      }
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      translate: 0 1.5rem;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

@@ -14,7 +14,7 @@ export function Section({ id, index, title, description, children }: SectionProp
   return (
     // scroll-mt keeps the heading clear of the sticky header when jumping to an anchor.
     <section id={id} aria-labelledby={headingId} className="scroll-mt-16 border-t border-border py-20 sm:py-24">
-      <Container>
+      <Container className="reveal">
         <header className="max-w-2xl">
           <p className="font-mono text-sm text-accent" aria-hidden="true">
             {index}

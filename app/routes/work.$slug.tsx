@@ -1,25 +1,28 @@
 import { ArrowLeft } from "lucide-react";
-import { data, Link } from "react-router";
+import { Link } from "react-router";
 import type { Route } from "./+types/work.$slug";
 import { ArchitectureFlow } from "~/components/case-study/ArchitectureFlow";
 import { FactSheet } from "~/components/case-study/FactSheet";
 import { Container } from "~/components/layout/Container";
+import { NotFoundContent, notFoundTitle } from "~/components/layout/NotFoundContent";
 import { getCaseStudy } from "~/content/case-studies";
 import { profile } from "~/content/profile";
+import { pageMeta } from "~/lib/seo";
 
-// Runs at build time for each pre-rendered case study (see react-router.config.ts).
-export function loader({ params }: Route.LoaderArgs) {
+// No loader: the content is already in the client bundle (the home page's work cards use it), so the
+// page looks the study up directly. Known slugs are pre-rendered (react-router.config.ts); unknown ones
+// arrive through Vercel's 404.html and render "Page not found" instead of a failed data request.
+export const meta: Route.MetaFunction = ({ params }) => {
   const study = getCaseStudy(params.slug);
-  if (!study) throw data(null, { status: 404 });
-  return study;
-}
+  return study
+    ? pageMeta({ title: `${study.title} | ${profile.name}`, description: study.summary, path: `/work/${study.slug}`, type: "article" })
+    : [{ title: `${notFoundTitle} | ${profile.name}` }, { name: "robots", content: "noindex" }];
+};
 
-export const meta: Route.MetaFunction = ({ loaderData }) =>
-  loaderData
-    ? [{ title: `${loaderData.title} | ${profile.name}` }, { name: "description", content: loaderData.summary }]
-    : [{ title: `Case study not found | ${profile.name}` }];
+export default function CaseStudyPage({ params }: Route.ComponentProps) {
+  const study = getCaseStudy(params.slug);
+  if (!study) return <NotFoundContent />;
 
-export default function CaseStudyPage({ loaderData: study }: Route.ComponentProps) {
   return (
     <Container className="py-16 sm:py-20">
       <Link to="/#work" className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-text">
