@@ -23,6 +23,7 @@ export function pageMeta({ title, description, path, type = "website", noindex =
   return [
     { title },
     { name: "description", content: description },
+    { name: "author", content: profile.name },
     ...(noindex ? [{ name: "robots", content: "noindex" }] : [{ tagName: "link", rel: "canonical", href: url }]),
     { property: "og:type", content: type },
     { property: "og:site_name", content: profile.name },

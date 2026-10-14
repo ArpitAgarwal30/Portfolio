@@ -13,6 +13,7 @@ describe("pageMeta", () => {
     expect(find(meta, "property", "og:image")?.content).toBe("https://arpitagarwal.vercel.app/og/default.png");
     expect(find(meta, "property", "og:type")?.content).toBe("article");
     expect(find(meta, "name", "twitter:card")?.content).toBe("summary_large_image");
+    expect(find(meta, "name", "author")?.content).toBe("Arpit Agarwal");
   });
 
   it("marks pages noindex instead of giving them a canonical URL", () => {
